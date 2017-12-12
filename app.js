@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const sass = require('node-sass')
+const decodeUriComponent = require('decode-uri-component')
 
 const app = express()
 
@@ -16,7 +17,7 @@ app.post('/convert', (req, res) => {
     } else {
         try{
             const result = sass.renderSync({
-                data: req.body,
+                data: decodeUriComponent(req.body),
                 outputStyle: 'compressed',
                 sourceMapEmbed: true
             }).css.toString()
