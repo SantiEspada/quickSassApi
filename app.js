@@ -17,11 +17,11 @@ app.post('/convert', (req, res) => {
         try{
             console.log(req.body);
             console.log(decodeUriComponent(req.body));
-            const result = sass.renderSync({
+            const result = encodeURIComponent(sass.renderSync({
                 data: decodeUriComponent(req.body),
                 outputStyle: 'compressed',
                 sourceMapEmbed: true
-            }).css.toString()
+            }).css.toString())
 
             res.send({
                 success: true,
