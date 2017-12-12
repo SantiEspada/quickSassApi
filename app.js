@@ -5,6 +5,8 @@ const decodeUriComponent = require('decode-uri-component')
 
 const app = express()
 
+app.use(bodyParser.text({limit: '50mb', extended: true}))
+
 app.post('/convert', (req, res) => {
     if(!req.body){
         res.send({
