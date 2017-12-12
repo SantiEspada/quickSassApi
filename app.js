@@ -16,6 +16,8 @@ app.post('/convert', (req, res) => {
         })
     } else {
         try{
+            console.log(req.body);
+            console.log(decodeUriComponent(req.body));
             const result = sass.renderSync({
                 data: decodeUriComponent(req.body),
                 outputStyle: 'compressed',
